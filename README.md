@@ -1,1 +1,1 @@
-# etch-a-sketch
+In this project given by TOP Curriculum, I will be applying  what I learned from DOM manipulation.
