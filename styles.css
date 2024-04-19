@@ -11,5 +11,15 @@
   align-items: center;
   width: 100vw;
   max-width: 100%;
-  padding: 5px;
+  padding: 1px;
+}
+
+.resetButton {
+  display: block;
+  margin: 5px auto;
+  padding: 20px;
+  font-size: 30px;
+  background-color: #74EDDA;
+  border-radius: 10px;
+  cursor: pointer;
 }
