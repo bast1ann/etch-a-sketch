@@ -1,11 +1,16 @@
 const container = document.querySelector(".container");
 const resetButton = document.querySelector(".resetButton");
+const rainbowButton = document.querySelector(".rainbowButton");
 const squares = [];
+let rainbow = false;
 let nRows = 16;
 
 resetButton.addEventListener("click", resetGrid);
 resetButton.addEventListener("mouseover", () => resetButton.style.backgroundColor = "#F0AB6C");
 resetButton.addEventListener("mouseout", () => resetButton.style.backgroundColor = "#74EDDA");
+rainbowButton.addEventListener("click", () => rainbow = true);
+rainbowButton.addEventListener("mouseover", () => rainbowButton.style.backgroundColor = "#F0AB6C");
+rainbowButton.addEventListener("mouseout", () => rainbowButton.style.backgroundColor = "#74EDDA");
 
 createSquares(nRows);
 addEvents();
@@ -23,23 +28,36 @@ function createSquares(dimensions) {
 }
 
 function activateMousemove() {
-  squares.forEach( (square) => square.addEventListener("mousemove", painting) );
+  squares.forEach( (square) => square.addEventListener("mouseenter", painting) );
 }
 
 function deactivateMousemove() {
-  squares.forEach( (square) => square.removeEventListener("mousemove", painting) );
+  squares.forEach( (square) => square.removeEventListener("mouseenter", painting) );
 }
 
 function painting() {
-  this.style.backgroundColor = "blue";
+  if (rainbow === true) {
+    this.style.backgroundColor = "#" + randomColor();
+  }
+  else {
+    this.style.backgroundColor = "black";
+  }
 }
 
 function addEvents() {
   squares.forEach( (square) => square.addEventListener("mousedown", () => {
-  square.style.backgroundColor = "blue";
-  activateMousemove(); }) );
-
+    if (rainbow === true) {
+      square.style.backgroundColor = "#" + randomColor();
+    }
+    else {
+      square.style.backgroundColor = "black";
+    }
+    activateMousemove(); }) );
   squares.forEach( (square) => square.addEventListener("mouseup", deactivateMousemove) );
+}
+
+function randomColor() {
+  return Math.floor(Math.random()*16777215).toString(16);
 }
 
 // Reset grid

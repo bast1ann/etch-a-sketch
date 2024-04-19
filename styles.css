@@ -21,11 +21,15 @@ body {
   border: 2px solid black;
 }
 
-.resetButton {
-  display: block;
-  margin: 0 auto;
-  padding: 20px;
-  font-size: 30px;
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.resetButton, .rainbowButton {
+  padding: 10px;
+  font-size: 16px;
   background-color: #74EDDA;
   border-radius: 10px;
   cursor: pointer;
