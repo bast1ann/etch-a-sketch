@@ -4,25 +4,19 @@
   box-sizing: border-box;
 }
 
-body {
-  padding: 20px;
-}
-
 .container {
-  box-sizing: content-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 800px;
-  height: 800px;
-  margin: 20px auto;
-  border: 2px solid black;
+  width: 100vw;
+  max-width: 100%;
+  padding: 1px;
 }
 
 .resetButton {
   display: block;
-  margin: 0 auto;
+  margin: 5px auto;
   padding: 20px;
   font-size: 30px;
   background-color: #74EDDA;
