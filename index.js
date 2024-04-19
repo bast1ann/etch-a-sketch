@@ -8,6 +8,7 @@ resetButton.addEventListener("mouseover", () => resetButton.style.backgroundColo
 resetButton.addEventListener("mouseout", () => resetButton.style.backgroundColor = "#74EDDA");
 
 createSquares(nRows);
+addEvents();
 
 // Create squares
 function createSquares(dimensions) {
@@ -17,22 +18,36 @@ function createSquares(dimensions) {
     squares[i].style.width = squareSize + "px";
     squares[i].style.height = squareSize + "px";
     squares[i].style.border = "1px solid grey";
-    squares[i].addEventListener("mousemove", () => squares[i].style.backgroundColor = "red");
     container.appendChild(squares[i]);
   }
+}
+
+function activateMousemove() {
+  squares.forEach( (square) => square.addEventListener("mousemove", painting) );
+}
+
+function deactivateMousemove() {
+  squares.forEach( (square) => square.removeEventListener("mousemove", painting) );
+}
+
+function painting() {
+  this.style.backgroundColor = "blue";
+}
+
+function addEvents() {
+  squares.forEach( (square) => square.addEventListener("mousedown", () => {
+  square.style.backgroundColor = "blue";
+  activateMousemove(); }) );
+
+  squares.forEach( (square) => square.addEventListener("mouseup", deactivateMousemove) );
 }
 
 // Reset grid
 function resetGrid() {
   nRows = prompt("Enter dimensions of the grid:");
-  squares.forEach( square => square.remove());
+  squares.forEach( square => square.remove() );
   createSquares(nRows);
+  addEvents();
 }
-
-// move in squares matrix
-
-// square.addEventListener("mousedown", () => pintar + activar mousemove event)
-// square.addEventListener("mouseup", () => desactivar mousemove event)
-
 
 // testing branch
