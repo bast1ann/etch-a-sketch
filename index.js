@@ -1,24 +1,22 @@
 const container = document.querySelector(".container");
+const buttons = document.querySelectorAll(".buttons-container button")
 const resetButton = document.querySelector(".resetButton");
 const rainbowButton = document.querySelector(".rainbowButton");
 const defaultButton = document.querySelector(".defaultButton");
 const clearButton = document.querySelector(".clearButton");
 const squares = [];
-let rainbow = false;
+let rainbowMode = false;
 let nRows = 16;
 
+buttons.forEach(function(button) {
+  button.addEventListener("mouseover", () => button.style.backgroundColor = "#F0AB6C");
+  button.addEventListener("mouseout", () => button.style.backgroundColor = "#74EDDA");
+});
+
 resetButton.addEventListener("click", resetGrid);
-resetButton.addEventListener("mouseover", () => resetButton.style.backgroundColor = "#F0AB6C");
-resetButton.addEventListener("mouseout", () => resetButton.style.backgroundColor = "#74EDDA");
-rainbowButton.addEventListener("click", () => rainbow = true);
-rainbowButton.addEventListener("mouseover", () => rainbowButton.style.backgroundColor = "#F0AB6C");
-rainbowButton.addEventListener("mouseout", () => rainbowButton.style.backgroundColor = "#74EDDA");
-defaultButton.addEventListener("click", () => rainbow = false);
-defaultButton.addEventListener("mouseover", () => defaultButton.style.backgroundColor = "#F0AB6C");
-defaultButton.addEventListener("mouseout", () => defaultButton.style.backgroundColor = "#74EDDA");
+rainbowButton.addEventListener("click", () => rainbowMode = true);
+defaultButton.addEventListener("click", () => rainbowMode = false);
 clearButton.addEventListener("click", clearGrid);
-clearButton.addEventListener("mouseover", () => clearButton.style.backgroundColor = "#F0AB6C");
-clearButton.addEventListener("mouseout", () => clearButton.style.backgroundColor = "#74EDDA");
 
 createSquares(nRows);
 addEvents();
@@ -44,7 +42,7 @@ function deactivateMousemove() {
 }
 
 function painting() {
-  if (rainbow === true) {
+  if (rainbowMode === true) {
     this.style.backgroundColor = "#" + randomColor();
   }
   else {
@@ -54,7 +52,7 @@ function painting() {
 
 function addEvents() {
   squares.forEach( (square) => square.addEventListener("mousedown", () => {
-    if (rainbow === true) {
+    if (rainbowMode === true) {
       square.style.backgroundColor = "#" + randomColor();
     }
     else {
