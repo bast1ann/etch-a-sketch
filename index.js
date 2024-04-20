@@ -1,6 +1,8 @@
 const container = document.querySelector(".container");
 const resetButton = document.querySelector(".resetButton");
 const rainbowButton = document.querySelector(".rainbowButton");
+const defaultButton = document.querySelector(".defaultButton");
+const clearButton = document.querySelector(".clearButton");
 const squares = [];
 let rainbow = false;
 let nRows = 16;
@@ -11,6 +13,12 @@ resetButton.addEventListener("mouseout", () => resetButton.style.backgroundColor
 rainbowButton.addEventListener("click", () => rainbow = true);
 rainbowButton.addEventListener("mouseover", () => rainbowButton.style.backgroundColor = "#F0AB6C");
 rainbowButton.addEventListener("mouseout", () => rainbowButton.style.backgroundColor = "#74EDDA");
+defaultButton.addEventListener("click", () => rainbow = false);
+defaultButton.addEventListener("mouseover", () => defaultButton.style.backgroundColor = "#F0AB6C");
+defaultButton.addEventListener("mouseout", () => defaultButton.style.backgroundColor = "#74EDDA");
+clearButton.addEventListener("click", clearGrid);
+clearButton.addEventListener("mouseover", () => clearButton.style.backgroundColor = "#F0AB6C");
+clearButton.addEventListener("mouseout", () => clearButton.style.backgroundColor = "#74EDDA");
 
 createSquares(nRows);
 addEvents();
@@ -66,6 +74,10 @@ function resetGrid() {
   squares.forEach( square => square.remove() );
   createSquares(nRows);
   addEvents();
+}
+
+function clearGrid() {
+  squares.forEach( square => square.style.backgroundColor = "white" );
 }
 
 // testing branch

@@ -27,7 +27,7 @@ body {
   gap: 30px;
 }
 
-.resetButton, .rainbowButton {
+.resetButton, .rainbowButton, .defaultButton, .clearButton {
   padding: 10px;
   font-size: 16px;
   background-color: #74EDDA;
