@@ -2,7 +2,6 @@ const container = document.querySelector(".container");
 const buttons = document.querySelectorAll(".buttons-container button")
 const resetButton = document.querySelector(".resetButton");
 const rainbowButton = document.querySelector(".rainbowButton");
-const defaultButton = document.querySelector(".defaultButton");
 const opacityButton = document.querySelector(".opacityButton");
 const clearButton = document.querySelector(".clearButton");
 const eraserButton = document.querySelector(".eraserButton");
@@ -25,6 +24,7 @@ opacityButton.addEventListener("click", toggleOpacity);
 clearButton.addEventListener("click", clearGrid);
 eraserButton.addEventListener("click", toggleEraser);
 
+// Initial state
 createSquares(nRows);
 addEvents();
 
@@ -135,5 +135,3 @@ function resetGrid() {
 function clearGrid() {
   squares.forEach( square => square.style.backgroundColor = "" );
 }
-
-// testing branch
