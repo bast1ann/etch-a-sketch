@@ -8,11 +8,13 @@ const squares = [];
 let rainbowMode = false;
 let nRows = 16;
 
+// Adding color-hovering effect for buttons
 buttons.forEach(function(button) {
   button.addEventListener("mouseover", () => button.style.backgroundColor = "#F0AB6C");
   button.addEventListener("mouseout", () => button.style.backgroundColor = "#74EDDA");
 });
 
+// Adding functionality to buttons
 resetButton.addEventListener("click", resetGrid);
 rainbowButton.addEventListener("click", () => rainbowMode = true);
 defaultButton.addEventListener("click", () => rainbowMode = false);
@@ -33,11 +35,11 @@ function createSquares(dimensions) {
   }
 }
 
-function activateMousemove() {
+function activateMouseEnter() {
   squares.forEach( (square) => square.addEventListener("mouseenter", painting) );
 }
 
-function deactivateMousemove() {
+function deactivateMouseEnter() {
   squares.forEach( (square) => square.removeEventListener("mouseenter", painting) );
 }
 
@@ -58,8 +60,8 @@ function addEvents() {
     else {
       square.style.backgroundColor = "black";
     }
-    activateMousemove(); }) );
-  squares.forEach( (square) => square.addEventListener("mouseup", deactivateMousemove) );
+    activateMouseEnter(); }) );
+  squares.forEach( (square) => square.addEventListener("mouseup", deactivateMouseEnter) );
 }
 
 function randomColor() {
