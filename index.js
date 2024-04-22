@@ -5,9 +5,11 @@ const rainbowButton = document.querySelector(".rainbowButton");
 const defaultButton = document.querySelector(".defaultButton");
 const opacityButton = document.querySelector(".opacityButton");
 const clearButton = document.querySelector(".clearButton");
+const eraserButton = document.querySelector(".eraserButton");
 const squares = [];
 let rainbowMode = false;
 let opacityMode = false;
+let eraserMode = false;
 let nRows = 16;
 
 // Adding color-hovering effect for buttons
@@ -18,11 +20,20 @@ buttons.forEach(function(button) {
 
 // Adding functionality to buttons
 resetButton.addEventListener("click", resetGrid);
-rainbowButton.addEventListener("click", () => rainbowMode = true);
+rainbowButton.addEventListener("click", function() {
+  rainbowMode = true;
+  eraserMode = false;
+});
 opacityButton.addEventListener("click", () => opacityMode = true);
-defaultButton.addEventListener("click", () => rainbowMode = false);
+defaultButton.addEventListener("click", function() {
+  rainbowMode = false;
+  eraserMode = false;
+});
 clearButton.addEventListener("click", clearGrid);
-
+eraserButton.addEventListener("click", function() {
+  rainbowMode = false;
+  eraserMode = true;
+});
 
 createSquares(nRows);
 addEvents();
@@ -56,6 +67,9 @@ function painting() {
     if (this.style.backgroundColor === "" || this.style.backgroundColor === "black") {
       this.style.backgroundColor = "#" + randomColor();
     } 
+  }
+  else if (eraserMode) {
+    this.style.backgroundColor = "";
   }
   else {
     this.style.backgroundColor = "black";
@@ -93,7 +107,7 @@ function resetGrid() {
 }
 
 function clearGrid() {
-  squares.forEach( square => square.style.backgroundColor = "white" );
+  squares.forEach( square => square.style.backgroundColor = "" );
 }
 
 // testing branch
