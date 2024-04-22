@@ -3,9 +3,11 @@ const buttons = document.querySelectorAll(".buttons-container button")
 const resetButton = document.querySelector(".resetButton");
 const rainbowButton = document.querySelector(".rainbowButton");
 const defaultButton = document.querySelector(".defaultButton");
+const opacityButton = document.querySelector(".opacityButton");
 const clearButton = document.querySelector(".clearButton");
 const squares = [];
 let rainbowMode = false;
+let opacityMode = false;
 let nRows = 16;
 
 // Adding color-hovering effect for buttons
@@ -17,8 +19,10 @@ buttons.forEach(function(button) {
 // Adding functionality to buttons
 resetButton.addEventListener("click", resetGrid);
 rainbowButton.addEventListener("click", () => rainbowMode = true);
+opacityButton.addEventListener("click", () => opacityMode = true);
 defaultButton.addEventListener("click", () => rainbowMode = false);
 clearButton.addEventListener("click", clearGrid);
+
 
 createSquares(nRows);
 addEvents();
@@ -43,23 +47,35 @@ function deactivateMouseEnter() {
   squares.forEach( (square) => square.removeEventListener("mouseenter", painting) );
 }
 
+function activateClickPainting() {
+  squares.forEach( (square) => square.addEventListener("mousedown", painting));
+}
+
 function painting() {
-  if (rainbowMode === true) {
-    this.style.backgroundColor = "#" + randomColor();
+  if (rainbowMode) {
+    if (this.style.backgroundColor === "" || this.style.backgroundColor === "black") {
+      this.style.backgroundColor = "#" + randomColor();
+    } 
   }
   else {
     this.style.backgroundColor = "black";
+  }
+
+  if (opacityMode) {
+    if (this.style.opacity === "") {
+      this.style.opacity = 0.1;
+    }
+    else if (Number(this.style.opacity) <= 0.9) {
+      let opacityNumber = Number(this.style.opacity);
+      opacityNumber += 0.1;
+      this.style.opacity = opacityNumber;
+    }
   }
 }
 
 function addEvents() {
   squares.forEach( (square) => square.addEventListener("mousedown", () => {
-    if (rainbowMode === true) {
-      square.style.backgroundColor = "#" + randomColor();
-    }
-    else {
-      square.style.backgroundColor = "black";
-    }
+    activateClickPainting();
     activateMouseEnter(); }) );
   squares.forEach( (square) => square.addEventListener("mouseup", deactivateMouseEnter) );
 }
