@@ -124,9 +124,10 @@ function randomColor() {
   return Math.floor(Math.random()*16777215).toString(16);
 }
 
-// Reset grid
 function resetGrid() {
-  nRows = prompt("Enter dimensions of the grid:");
+  do {
+    nRows = prompt("Enter dimensions of the grid:");
+  } while (nRows > 100);
   squares.forEach( square => square.remove() );
   createSquares(nRows);
   addEvents();
