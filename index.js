@@ -30,7 +30,7 @@ addEvents();
 
 // Create squares
 function createSquares(dimensions) {
-  const squareSize = 800/dimensions; 
+  const squareSize = 700/dimensions; 
   for (let i = 0; i < dimensions*dimensions; i++) {
     squares[i] = document.createElement("div");
     squares[i].style.width = squareSize + "px";
@@ -134,5 +134,8 @@ function resetGrid() {
 }
 
 function clearGrid() {
-  squares.forEach( square => square.style.backgroundColor = "" );
+  squares.forEach( (square) => {
+    square.style.backgroundColor = "";
+    square.style.opacity = "";
+  });
 }
