@@ -30,7 +30,7 @@ addEvents();
 
 // Create squares
 function createSquares(dimensions) {
-  const squareSize = 700/dimensions; 
+  const squareSize = (container.offsetHeight - 4) / dimensions; 
   for (let i = 0; i < dimensions*dimensions; i++) {
     squares[i] = document.createElement("div");
     squares[i].style.width = squareSize + "px";
