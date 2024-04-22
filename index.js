@@ -20,20 +20,10 @@ buttons.forEach(function(button) {
 
 // Adding functionality to buttons
 resetButton.addEventListener("click", resetGrid);
-rainbowButton.addEventListener("click", function() {
-  rainbowMode = true;
-  eraserMode = false;
-});
-opacityButton.addEventListener("click", () => opacityMode = true);
-defaultButton.addEventListener("click", function() {
-  rainbowMode = false;
-  eraserMode = false;
-});
+rainbowButton.addEventListener("click", toggleRainbow);
+opacityButton.addEventListener("click", toggleOpacity);
 clearButton.addEventListener("click", clearGrid);
-eraserButton.addEventListener("click", function() {
-  rainbowMode = false;
-  eraserMode = true;
-});
+eraserButton.addEventListener("click", toggleEraser);
 
 createSquares(nRows);
 addEvents();
@@ -62,6 +52,39 @@ function activateClickPainting() {
   squares.forEach( (square) => square.addEventListener("mousedown", painting));
 }
 
+function toggleRainbow() {
+  rainbowMode = !rainbowMode;
+    if (rainbowMode === true) {
+    rainbowButton.textContent = "Rainbow Mode ON";
+  }
+  else {
+    rainbowButton.textContent = "Rainbow Mode OFF";
+  }
+}
+
+function toggleOpacity() {
+    opacityMode = !opacityMode;
+  if (opacityMode === true) {
+    opacityButton.textContent = "Opacity Mode ON";
+  }
+  else {
+    opacityButton.textContent = "Opacity Mode OFF";
+  }
+}
+
+function toggleEraser() {
+  eraserMode = !eraserMode;
+  if (eraserMode === true) {
+    eraserButton.textContent = "Eraser ON";
+  }
+  else {
+    eraserButton.textContent = "Eraser OFF";
+  }
+  if (rainbowMode === true) {
+    toggleRainbow();
+  }
+}
+
 function painting() {
   if (rainbowMode) {
     if (this.style.backgroundColor === "" || this.style.backgroundColor === "black") {
@@ -84,6 +107,9 @@ function painting() {
       opacityNumber += 0.1;
       this.style.opacity = opacityNumber;
     }
+  }
+  else {
+    this.style.opacity = 1;
   }
 }
 
