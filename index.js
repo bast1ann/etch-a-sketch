@@ -80,37 +80,41 @@ function toggleEraser() {
   else {
     eraserButton.textContent = "Eraser OFF";
   }
-  if (rainbowMode === true) {
-    toggleRainbow();
-  }
 }
 
 function painting() {
-  if (rainbowMode) {
-    if (this.style.backgroundColor === "" || this.style.backgroundColor === "black") {
-      this.style.backgroundColor = "#" + randomColor();
-    } 
-  }
-  else if (eraserMode) {
+  if (eraserMode) {
     this.style.backgroundColor = "";
     this.style.opacity = "";
   }
-  else {
-    this.style.backgroundColor = "black";
-  }
-
-  if (opacityMode) {
-    if (this.style.opacity === "") {
+  else if (this.style.backgroundColor === "") {
+    if (rainbowMode) {
+      this.style.backgroundColor = "#" + randomColor();
+    }
+    else {
+      this.style.backgroundColor = "black";
+    }
+    if (opacityMode) {
       this.style.opacity = 0.1;
     }
-    else if (Number(this.style.opacity) <= 0.9) {
+    else {
+      this.style.opacity = 1;
+    }
+  }
+  else {
+    if ( opacityMode && (Number(this.style.opacity) <= 0.9) ) {
       let opacityNumber = Number(this.style.opacity);
       opacityNumber += 0.1;
       this.style.opacity = opacityNumber;
     }
-  }
-  else {
-    this.style.opacity = "";
+    else {
+      if (rainbowMode) {
+        this.style.backgroundColor = "#" + randomColor();
+      }
+      else {
+        this.style.backgroundColor = "black";
+      }
+    }
   }
 }
 
