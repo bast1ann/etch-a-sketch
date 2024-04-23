@@ -93,6 +93,7 @@ function painting() {
   }
   else if (eraserMode) {
     this.style.backgroundColor = "";
+    this.style.opacity = "";
   }
   else {
     this.style.backgroundColor = "black";
@@ -109,7 +110,7 @@ function painting() {
     }
   }
   else {
-    this.style.opacity = 1;
+    this.style.opacity = "";
   }
 }
 
